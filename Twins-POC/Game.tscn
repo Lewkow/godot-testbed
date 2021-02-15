@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/Planet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/Barrier.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/HUD.tscn" type="PackedScene" id=4]
+
+[node name="Game" type="Node2D"]
+
+[node name="Planet" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0.118118, -0.118118 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1.14658, -1.14661 )
+
+[node name="Barrier" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2.84686, -7.3204 )
+
+[node name="Barrier2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1274.16, 3.25351 )
+
+[node name="Barrier3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1271.72, 2.44017 )
+rotation = 1.5708
+scale = Vector2( 1, 1.75 )
+
+[node name="Barrier4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1258.7, 710.893 )
+rotation = 1.5708
+scale = Vector2( 1, 1.75 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+margin_left = 339.061
+margin_top = 620.57
+margin_right = 379.061
+margin_bottom = 660.57
+rect_scale = Vector2( 12.6582, 2.28038 )
