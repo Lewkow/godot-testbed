@@ -11,6 +11,7 @@ points = PoolVector2Array( 0, -32, 40, 28, -40, 28 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 639.426, 620.147 )
+scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -23,3 +24,9 @@ shape = SubResource( 1 )
 
 [node name="LaserWeapon" parent="." instance=ExtResource( 5 )]
 script = ExtResource( 4 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
