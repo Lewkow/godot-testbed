@@ -3,4 +3,5 @@
 [ext_resource path="res://objects/LaserWeapon.gd" type="Script" id=1]
 
 [node name="LaserWeapon" type="Node2D"]
+position = Vector2( 0.00943184, 0.00735283 )
 script = ExtResource( 1 )
