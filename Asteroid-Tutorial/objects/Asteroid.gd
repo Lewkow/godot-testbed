@@ -1,14 +1,21 @@
 extends RigidBody2D
 
+signal explode
+
 var asteroid_small_scene := load("res://objects/AsteroidSmall.tscn")
 var rng = RandomNumberGenerator.new()
 var is_exploded := false
+
+func _ready() -> void:
+	var main_camera = get_node("/root/Game/MainCamera")
+	self.connect("explode", main_camera, "asteroid_exploded")
 
 func explode():
 	if is_exploded:
 		return
 
 	is_exploded = true
+	emit_signal("explode")
 	_spawn_asteroid_smalls(4)
 	get_parent().remove_child(self)
 	queue_free()

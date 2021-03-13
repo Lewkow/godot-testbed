@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal laser_shoot
 const SPEED := 600
 
 func _physics_process(delta: float) -> void:
@@ -12,9 +13,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_collide(velocity * delta)
 
+
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if (event.is_action_pressed("shoot")):
 		$LaserWeapon.shoot()
+		emit_signal("laser_shoot")
 
 
 func _on_Hitbox_body_entered(body: Node) -> void:
