@@ -1,5 +1,7 @@
 extends Label
 
+func reset():
+	text = str(0)
 
 func update_score(points_scored: int):
 	var score = int(text)
