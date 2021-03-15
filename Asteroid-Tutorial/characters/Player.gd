@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal laser_shoot
+signal player_died
 const SPEED := 600
 var player_explosion_scene = load("res://objects/ParticlesPlayerExplosion.tscn")
 
@@ -26,6 +27,7 @@ func explode():
 	explosion.position = self.position
 	get_parent().add_child(explosion)
 	explosion.emitting = true
+	emit_signal("player_died")
 	queue_free()
 
 

@@ -9,3 +9,4 @@ func asteroid_exploded() -> void:
 
 func asteroid_small_exploded() -> void:
 	$ScreenShake.start(0.1, 15, 8, 1)
+
