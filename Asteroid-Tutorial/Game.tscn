@@ -40,7 +40,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1300, 740 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 694.862, 667.397 )
+position = Vector2( 622.577, 613.412 )
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 1 )]
 
