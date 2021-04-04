@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://vine.png" type="Texture" id=1]
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Block.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 89.6495, 32.1411 )
+
+[node name="World" type="Node2D"]
+
+[node name="Base" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Base"]
+position = Vector2( 510, 550 )
+scale = Vector2( 100, 1 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base"]
+position = Vector2( 510.463, 550.811 )
+scale = Vector2( 5.56, 1 )
+shape = SubResource( 1 )
+
+[node name="Projectile" parent="." instance=ExtResource( 2 )]
+position = Vector2( 102.704, 430.379 )
+
+[node name="Block" parent="." instance=ExtResource( 3 )]
+position = Vector2( 780.673, 482.953 )
+
+[node name="Block2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 780.061, 418.763 )
+
+[node name="Block3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 781.284, 352.739 )
+
+[node name="Block4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 781.284, 287.938 )

@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://abstract-platformer-370-assets/PNG/Other/plantRed_3.png" type="Texture" id=1]
+[ext_resource path="res://Photon.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 107.813
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0, 4.59177e-40, 0.30916, 0.648855, 0.73855, 0.902672, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0.584314, 0.996078, 0.00784314, 1, 0, 0.443137, 0.980392, 1, 0.282443, 0.317976, 0.98593, 1, 0.726222, 0.121321, 0.994632, 1, 0.694656, 0.135309, 0.994013, 1, 0.888561, 0.0493829, 0.997815, 1, 1, 0, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+min_value = -1.0
+_data = [ Vector2( 0.00174826, -0.776576 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 5 )
+hue_variation_random = 1.0
+hue_variation_curve = SubResource( 7 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Particles2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="Photon" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 4.16, 1 )
+shape = SubResource( 2 )
+
+[node name="RadiationParticles" type="Particles2D" parent="."]
+rotation = -1.5708
+scale = Vector2( 3.01779, 1 )
+amount = 9
+lifetime = 10.0
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
+script = SubResource( 3 )

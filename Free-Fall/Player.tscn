@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/playerGreen_fall.png" type="Texture" id=1]
+[ext_resource path="res://assets/playerGreen_hit.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 24.5429
+height = 1.61859
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+} ]
+
+[node name="Player" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "falling"
+speed_scale = 0.3
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
