@@ -23,6 +23,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "falling"
+frame = 1
 speed_scale = 0.3
 playing = true
 
