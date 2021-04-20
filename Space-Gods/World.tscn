@@ -6,8 +6,10 @@
 [node name="World" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Background" type="Sprite" parent="."]
+[node name="System" type="Node" parent="."]
+
+[node name="Background" type="Sprite" parent="System"]
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 1080, 720 )
+region_rect = Rect2( 0, 0, 10800, 7200 )

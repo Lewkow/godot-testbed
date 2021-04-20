@@ -24,6 +24,10 @@ config/icon="res://icon.png"
 window/size/width=1080
 window/size/height=720
 
+[editor_plugins]
+
+enabled=PoolStringArray( "KOBUGE-games.CircularContainer" )
+
 [input]
 
 exit={
