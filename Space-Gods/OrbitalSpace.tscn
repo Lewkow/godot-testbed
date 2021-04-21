@@ -4,6 +4,7 @@
 script/source = "extends Node2D
 
 var turret = load(\"res://DefenseTurret.tscn\")
+var commsat = load(\"res://CommSat.tscn\")
 var occupied
 
 func _ready():
@@ -14,10 +15,44 @@ func add_turret():
 	add_child(new_turret)
 	occupied = true
 
+func add_commsat():
+	var new_commsat = commsat.instance()
+	add_child(new_commsat)
+	occupied = true
+
 func is_occupied():
 	return occupied
 
+func update_label():
+	var current_r
+	current_r = sqrt(pow(position.x, 2.0) + pow(position.y, 2.0))
+	$TextureRect/Label.text = \"R: %d\" % int(current_r)
+
+func _on_TextureRect_mouse_entered():
+	$TextureRect/Label.show()
+
+
+func _on_TextureRect_mouse_exited():
+	$TextureRect/Label.hide()
 "
 
 [node name="OrbitalSpace" type="Node2D"]
 script = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect"]
+visible = false
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="TextureRect" to="." method="_on_TextureRect_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="." method="_on_TextureRect_mouse_exited"]

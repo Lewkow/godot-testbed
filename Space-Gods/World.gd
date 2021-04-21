@@ -21,6 +21,8 @@ func _ready():
 	add_child(star_instance)
 
 	var player = player_scene.instance()
-	player.position.x = rng.randf_range(0, vpx)
-	player.position.y = rng.randf_range(0, vpy)
+#	player.position.x = rng.randf_range(0, vpx)
+#	player.position.y = rng.randf_range(0, vpy)
+	player.position.x = vpx / 2.0
+	player.position.y = vpy / 2.0
 	add_child(player)

@@ -12,17 +12,26 @@ var zoom_diff = 0.05
 
 
 func _input(event):
-	if event in InputEventMouseButton and event.is_pressed():
-		print('cat')
-		if event.button_index == BUTTON_WHEEL_UP:
-			if $Camera2D.zoom > Vector2(zoom_up_lim, zoom_up_lim):
-				$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
-		elif event.button_index == BUTTON_WHEEL_DOWN:
-			if $Camera2D.zoom < Vector2(zoom_down_lim, zoom_down_lim):
-				$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
+	if event is InputEventMouseButton and event.is_pressed():
+		move_to_this_position(event.position)
+#	if event in InputEventMouseButton and event.is_pressed():
+#		if event.button_index == BUTTON_WHEEL_UP:
+#			if $Camera2D.zoom > Vector2(zoom_up_lim, zoom_up_lim):
+#				$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
+#		elif event.button_index == BUTTON_WHEEL_DOWN:
+#			if $Camera2D.zoom < Vector2(zoom_down_lim, zoom_down_lim):
+#				$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
 
 func _ready():
 	screensize = get_viewport().get_visible_rect().size
+
+func move_to_this_position(this_position):
+	var move_path = this_position - position
+	var move_dist = move_path.length()
+	var angle_diff = move_path.angle_to(Vector2.UP.rotated(rotation))
+	print(angle_diff)
+	
+	
 
 func get_input():
 	if Input.is_action_pressed("ui_up"):
