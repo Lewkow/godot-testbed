@@ -27,13 +27,25 @@ func _ready():
 func get_input():
 	if Input.is_action_pressed("ui_up"):
 		thrust = Vector2(0, -engine_thrust)
+		$MainThrusters.emitting = true
 	else:
 		thrust = Vector2()
+		$MainThrusters.emitting = false
+
 	rotation_dir = 0
 	if Input.is_action_pressed("ui_right"):
 		rotation_dir += 1
-	if Input.is_action_pressed("ui_left"):
+		$YawLeftCW.emitting = true
+		$YawRightCW.emitting = true
+	elif Input.is_action_pressed("ui_left"):
 		rotation_dir -= 1
+		$YawLeftCCW.emitting = true
+		$YawRightCCW.emitting = true
+	else:
+		$YawLeftCCW.emitting = false
+		$YawRightCCW.emitting = false
+		$YawLeftCW.emitting = false
+		$YawRightCW.emitting = false
 
 func _process(delta):
 	get_input()
