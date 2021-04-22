@@ -24,5 +24,5 @@ func _ready():
 #	player.position.x = rng.randf_range(0, vpx)
 #	player.position.y = rng.randf_range(0, vpy)
 	player.position.x = vpx / 2.0
-	player.position.y = vpy / 2.0
+	player.position.y = vpy / 2.0 - 75
 	add_child(player)
