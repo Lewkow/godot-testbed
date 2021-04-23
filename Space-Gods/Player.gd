@@ -8,8 +8,8 @@ var thrust_min = 100
 var rotation_dir = 0.0
 var screensize
 var zoom_up_lim = 0.1
-var zoom_down_lim = 0.75
-var zoom_diff = 0.05
+var zoom_down_lim = 0.5
+var zoom_diff = 0.005
 var angular_velocity_lim = 1
 var linear_velocity_lim = 10
 var linear_velocity_min_lim = 1
@@ -20,16 +20,21 @@ var auto_yaw_dot = 0
 var auto_thrust_on = false
 
 func _input(event):
-	if (event is InputEventMouseButton) and (event.is_pressed()):
-		move_to_this_position(event.position)
-	elif (event in InputEventMouseButton) and (event.is_pressed()):
-		if event.button_index == BUTTON_WHEEL_UP:
-			print("wheel up")
-			if $Camera2D.zoom > Vector2(zoom_up_lim, zoom_up_lim):
-				$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
-		elif event.button_index == BUTTON_WHEEL_DOWN:
-			if $Camera2D.zoom < Vector2(zoom_down_lim, zoom_down_lim):
-				$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == 1:
+				move_to_this_position(event.position)
+		
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == BUTTON_WHEEL_UP:
+				print("button wheel up")
+				if $Camera2D.zoom > Vector2(zoom_up_lim, zoom_up_lim):
+					$Camera2D.zoom = $Camera2D.zoom-Vector2(zoom_diff, zoom_diff)
+			elif event.button_index == BUTTON_WHEEL_DOWN:
+				print("button wheel down")
+				if $Camera2D.zoom < Vector2(zoom_down_lim, zoom_down_lim):
+					$Camera2D.zoom = $Camera2D.zoom+Vector2(zoom_diff, zoom_diff)
 
 func _ready():
 	screensize = get_viewport().get_visible_rect().size
@@ -61,6 +66,7 @@ func check_auto_thrust():
 		 (move_len < 2*auto_destination_piece):
 		auto_thrust_on = false
 		auto_yaw_dot = -1
+		yaw_ccw(10)
 		auto_yaw_on = true
 	elif (auto_yaw_dot == -1) and \
 		 (linear_velocity.length() > linear_velocity_min_lim):
@@ -90,13 +96,13 @@ func boost():
 	thrust = Vector2(0, -engine_thrust)
 	$MainThrusters.emitting = true
 
-func yaw_cw():
-	rotation_dir += 1
+func yaw_cw(mag=1):
+	rotation_dir += mag
 	$YawLeftCW.emitting = true
 	$YawRightCW.emitting = true
 
-func yaw_ccw():
-	rotation_dir -= 1
+func yaw_ccw(mag=1):
+	rotation_dir -= mag
 	$YawLeftCCW.emitting = true
 	$YawRightCCW.emitting = true
 
